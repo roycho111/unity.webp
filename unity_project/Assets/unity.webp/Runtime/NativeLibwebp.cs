@@ -314,7 +314,7 @@ namespace unity.libwebp
 
         public static int CheckSizeOverflow([NativeTypeName("uint64_t")] ulong size)
         {
-            return (size == (nuint)(size)) ? 1 : 0;
+            return (size == (uint)(size)) ? 1 : 0;
         }
 
         [DllImport(DLL_NAME, CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]

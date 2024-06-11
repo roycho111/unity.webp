@@ -298,6 +298,36 @@ namespace WebP
             return lOutputBuffer;
         }
 
+        public static unsafe WebPData GetRawWebPData(this Texture2D lTexture2D)
+        {
+            Color32[] lRawColorData = lTexture2D.GetPixels32();
+
+            GCHandle lPinnedArray = GCHandle.Alloc(lRawColorData, GCHandleType.Pinned);
+            IntPtr lRawDataPtr = lPinnedArray.AddrOfPinnedObject();
+
+            WebPData webpdata = new WebPData
+            {
+                bytes = (byte*)lRawDataPtr,
+                size = new UIntPtr((uint)lRawColorData.Length)
+            };
+
+            return webpdata;
+        }
+
+        public static unsafe WebPData GetRawWebPData(this Texture2D lTexture2D, Color32[] pixels)
+        {
+            GCHandle lPinnedArray = GCHandle.Alloc(pixels, GCHandleType.Pinned);
+            IntPtr lRawDataPtr = lPinnedArray.AddrOfPinnedObject();
+
+            WebPData webpdata = new WebPData
+            {
+                bytes = (byte*)lRawDataPtr,
+                size = new UIntPtr((uint)pixels.Length)
+            };
+
+            return webpdata;
+        }
+
         public static unsafe void LoadTexture2DFromWebP(byte[] webpBytes, Texture2D texture, bool lMipmaps, bool lLinear, byte[] bytePool, int numBytesRequired, ScalingFunction scalingFunction = null)
         {
             Debug.Assert(bytePool.Length >= numBytesRequired);
