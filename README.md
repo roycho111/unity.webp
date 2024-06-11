@@ -53,6 +53,9 @@ ex)
   - ref: <https://forum.unity.com/threads/async-await-and-webgl-builds.472994/>
 - For WebGL build, this repo copied [webmproject/libwebp](https://github.com/webmproject/libwebp) directly. It will be more cleanable if it can be support prebuilt. But It needs more investigate.
 
+## Animation Capture
+![animation_capture_test.gif](./animation_capture_test.gif)
+- Only works in editor mode
 
 ## stop to support .unitypackage
 
